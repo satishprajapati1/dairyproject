@@ -1,0 +1,51 @@
+<odoo>
+
+    <record id="member_main" model="ir.actions.act_window">
+      <field name="name">Member</field>
+      <field name="res_model">member</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <menuitem id="dairy_menu_root" name="Dairy"/>
+        <menuitem id="member_menu" name="Members" parent="dairy_menu_root"  action="member_main"/>
+        <menuitem id="cattle_menu" name="Cattles" parent="dairy_menu_root"  action="cattle_main"/>
+        <menuitem id="config_menu" name="Config." parent="dairy_menu_root"/>
+            <menuitem id="cattle_breed_menu" name="Cattle Breed" parent="config_menu"  action="cattle_breed_main"/>
+            
+
+    <record id="member_tree" model="ir.ui.view" >
+        <field name="name">Member</field>
+        <field name="model">member</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="member_id"/>
+                <field name="member_name"/>
+                <field name="gender"/>
+                <field name="dob" invisible="1"/>
+                <field name="age"/>
+                <field name="joining_date" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="member_form_view" model="ir.ui.view">
+        <field name="name">member.form</field>
+        <field name="model">member</field>
+        <field name="arch" type="xml">
+            <form string="Members">
+                <sheet>
+                    <h1><field name="member_id"/></h1>
+                    <h1><field name="member_name"/></h1>
+                    <group>
+                        <field name="gender"/>
+                        <field name="dob"/>
+                        <field name="age"/>
+                        <field name="joining_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+
+</odoo>

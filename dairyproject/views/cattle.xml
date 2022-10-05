@@ -1,0 +1,76 @@
+<odoo>
+    
+    <record id="cattle_main" model="ir.actions.act_window">
+      <field name="name">Cattle</field>
+      <field name="res_model">cattle</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    
+
+    <record id="cattle_tree" model="ir.ui.view" >
+        <field name="name">Cattle</field>
+        <field name="model">cattle</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="cattle_id"/>
+                <field name="name"/>
+                <field name="cattle_type"/>
+                <field name="cattle_breed"/>
+                <field name="owner_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="cattle_form_view" model="ir.ui.view">
+        <field name="name">cattle.form</field>
+        <field name="model">cattle</field>
+        <field name="arch" type="xml">
+            <form string="Cattles">
+                <sheet>
+                    <h1><field name="cattle_id"/></h1>
+                    <h1><field name="name"/></h1>
+                    <group>
+                        <field name="cattle_type"/>
+                        <field name="cattle_breed"/>
+                        <field name="owner_name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Cattle Breed -->
+    
+    <record id="cattle_breed_main" model="ir.actions.act_window">
+      <field name="name">Cattle Breed</field>
+      <field name="res_model">cattle.breed</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    
+
+    <record id="cattle_breed_tree" model="ir.ui.view" >
+        <field name="name">Cattle Breed</field>
+        <field name="model">cattle.breed</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="cattle_breed_form_view" model="ir.ui.view">
+        <field name="name">cattle.breed.form</field>
+        <field name="model">cattle.breed</field>
+        <field name="arch" type="xml">
+            <form string="Cattle Breeds">
+                <sheet>
+                    <h1><field name="name"/></h1>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+</odoo>
