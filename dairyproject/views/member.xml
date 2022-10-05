@@ -1,9 +1,9 @@
 <odoo>
 
     <record id="member_main" model="ir.actions.act_window">
-      <field name="name">Member</field>
-      <field name="res_model">member</field>
-      <field name="view_mode">tree,form,kanban</field>
+        <field name="name">Member</field>
+        <field name="res_model">member</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
 
     <menuitem id="dairy_menu_root" name="Dairy"/>
@@ -19,7 +19,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="member_id"/>
-                <field name="member_name"/>
+                <field name="name"/>
                 <field name="gender"/>
                 <field name="dob" invisible="1"/>
                 <field name="age"/>
@@ -35,7 +35,7 @@
             <form string="Members">
                 <sheet>
                     <h1><field name="member_id"/></h1>
-                    <h1><field name="member_name"/></h1>
+                    <h1><field name="name"/></h1>
                     <group>
                         <field name="gender"/>
                         <field name="dob"/>
@@ -47,5 +47,4 @@
         </field>
     </record>
     
-
 </odoo>

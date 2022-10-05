@@ -7,7 +7,7 @@ class Member(models.Model):
     _order = 'member_id'
 
     member_id = fields.Integer(string='Member no.')
-    member_name = fields.Char(string='Member name')
+    name = fields.Char(string='Member name')
     # partner_id = fields.Many2one('res.partner',required=True,string = 'Member name')
     dob = fields.Date(string="Date of Birth",required=True)
     gender = fields.Selection([('m','Male'),('f','Female'),('o','Other')],required=True)

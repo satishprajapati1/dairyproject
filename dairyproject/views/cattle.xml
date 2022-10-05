@@ -1,12 +1,10 @@
 <odoo>
     
     <record id="cattle_main" model="ir.actions.act_window">
-      <field name="name">Cattle</field>
-      <field name="res_model">cattle</field>
-      <field name="view_mode">tree,form,kanban</field>
+        <field name="name">Cattle</field>
+        <field name="res_model">cattle</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
-
-    
 
     <record id="cattle_tree" model="ir.ui.view" >
         <field name="name">Cattle</field>
@@ -16,8 +14,11 @@
                 <field name="cattle_id"/>
                 <field name="name"/>
                 <field name="cattle_type"/>
-                <field name="cattle_breed"/>
+                <field name="cattle_breed" optional="hide"/>
+                <field name="body_condition"/>
                 <field name="owner_name"/>
+                <field name="height" optional="hide"/>
+                <field name="weight" optional="hide"/>
             </tree>
         </field>
     </record>
@@ -32,24 +33,54 @@
                     <h1><field name="name"/></h1>
                     <group>
                         <field name="cattle_type"/>
-                        <field name="cattle_breed"/>
-                        <field name="owner_name"/>
                     </group>
+                    <notebook>
+                        <page string="Description">
+                            <group>
+                                <field name="cattle_breed"/>
+                                <field name="owner_name"/>
+                                <field name="body_condition"/>
+                                <field name="height"/>
+                                <field name="weight"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="cattle_search_view" model="ir.ui.view" >
+        <field name="name">cattle.search</field>
+        <field name="model">cattle</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="cattle_id"/>
+                <field name="name" filter_domain="['|',('name','ilike',self),('cattle_breed','ilike',self)]"/>
+                <field name="cattle_breed"/>
+                <field name="owner_name"/>
+                
+                <filter name="fitcondition" string="Fit Body Condition" domain="[('body_condition','=','fit')]"/>
+                <separator/>
+                <filter name="weakcondition" string="Weak Body Condition" domain="[('body_condition','=','weak')]"/>
+                <filter name="sickcondition" string="Sick Body Condition" domain="[('body_condition','=','sick')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Cattle Type" name="cattletype_groupby" context="{'group_by':'cattle_type'}"/>
+                    <filter string="Cattle Breed" name="cattlebreed_groupby" context="{'group_by':'cattle_breed'}"/>
+                    <filter string="Cattle Owner" name="cattleowner_groupby" context="{'group_by':'owner_name'}"/>
+                </group>
+            </search>
         </field>
     </record>
     
     <!-- Cattle Breed -->
     
     <record id="cattle_breed_main" model="ir.actions.act_window">
-      <field name="name">Cattle Breed</field>
-      <field name="res_model">cattle.breed</field>
-      <field name="view_mode">tree,form,kanban</field>
+        <field name="name">Cattle Breed</field>
+        <field name="res_model">cattle.breed</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
-
     
-
     <record id="cattle_breed_tree" model="ir.ui.view" >
         <field name="name">Cattle Breed</field>
         <field name="model">cattle.breed</field>

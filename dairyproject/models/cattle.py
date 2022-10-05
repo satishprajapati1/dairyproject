@@ -21,8 +21,10 @@ class Cattle(models.Model):
     name = fields.Char()
     cattle_type = fields.Selection([('cow','Cow'),('buffalo','Buffalo'),('goat','Goat')],required=True)
     cattle_breed = fields.Many2one('cattle.breed',required=True)
+    height = fields.Float()
+    weight = fields.Float()
+    body_condition = fields.Selection([('fit','Fit'),('sick','Sick'),('weak','Weak')])
     owner_name = fields.Many2one('member',required=True)
-    
 
     _sql_constraints = [
         ('id_uniq','unique(cattle_id)','Cattle Id must be unique')
