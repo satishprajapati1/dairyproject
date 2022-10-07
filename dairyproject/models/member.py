@@ -12,6 +12,8 @@ class Member(models.Model):
     dob = fields.Date(string="Date of Birth",required=True)
     gender = fields.Selection([('m','Male'),('f','Female'),('o','Other')],required=True)
     age = fields.Integer(compute='_compute_age',readonly=True)
+    address = fields.Text()
+    mobile = fields.Char(required=True)
     joining_date = fields.Date()    
 
     @api.onchange("dob")
